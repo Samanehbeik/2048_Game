@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2048_Game</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      $(document).ready(function () {
+        var $table = $("<table></table>").attr({
+          id: "myTable",
+          class: "table_container",
+        });
+        // Create six rows
+        for (var i = 0; i < 4; i++) {
+          var $row = $("<tr></tr>");
+          // Create six columns for each row
+          for (var j = 0; j < 4; j++) {
+            var $col = $("<td></td>").attr({
+              class: "td_column",
+              id: i + "-" + j,
+            });
+            $row.append($col);
+          }
+          $table.append($row);
+        }
+        // Add the table to the body (or any other container)
+        // $("body").append($table);
+        $("#container").append($table);
+      });
+    </script>
+    <button id="NewGame">New Game</button>
+  </body>
+</html>

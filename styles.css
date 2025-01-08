@@ -1,6 +1,5 @@
 table td tr {
   border: 1px solid black;
-  background-color: aquamarine;
 }
 .table_container {
   /* width: 50%; */
@@ -26,6 +25,9 @@ td {
   margin: 5px;
   background-color: rgb(205 193 180);
   border-radius: 5px;
+  color:#8D6E63;
+  font-size: 80px;
+  font-weight: bolder;
 }
 th {
   background-color: #f2f2f2;

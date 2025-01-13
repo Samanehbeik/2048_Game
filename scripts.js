@@ -30,12 +30,10 @@ function addValueByKeys() {
 function addDown(index, k, j) {
   let row1 = $("#myTable tr:nth-child("+index+") td:nth-child("+j+")");
   let row2 = $("#myTable tr:nth-child("+index+k+") td:nth-child("+j+")");
-  let t = 0;
-    t = row2.text() + row1.text();
+  let t = row2.text() + row1.text();
     row1.text("");
     row2.text(t);
-    return;
-}
+   }
  
 function keydown() {
   for (var j = 0; j < 4; j++) {
@@ -43,32 +41,32 @@ function keydown() {
     while (i < 3) {
       // let $row1 = $rows.eq(i).find("td").eq(j);
       // let row1 = $rows.eq(i).children('td').eq(j);
-      let row1 =$("#myTable tr:nth-child("+i+") td:nth-child("+j+")");
+      let row1 = $("#myTable tr:nth-child("+i+") td:nth-child("+j+")");
       let row2 = $("#myTable tr:nth-child("+i+1+") td:nth-child("+j+")");     
       let row3 = $("#myTable tr:nth-child("+i+2+") td:nth-child("+j+")"); 
       let row4 = $("#myTable tr:nth-child("+i+3+") td:nth-child("+j+")");
      
-      // if (row1.text()!="") {
-       
-      //   // if (row2.text()== row1.text()) {
-      //   //   addDown(i, 1, j);
-      //   //   i++;
-      //   // } else {
-      //   //   if (row3.text().trim() != "" && i<2) {
-      //   //     if (row2.text()== row1.text()){addDown(i, 2, j);
-      //   //     i++;}
-      //   //   } else {
-      //   //     if (row4.text().trim() == row1.text().trim()) {
-      //   //       t = row4.text() + row1.text();
-      //   //       row1.text("");
-      //   //       row4.text(t);
-      //   //     }
-      //   //     else {
-      //   //       row4.text(row1.text());
-      //   //     }
-      //   //   }
-      //   // }
-      //         }
+      console.log(row1.text()+row2.text());
+       if (row1.text()!="") {
+          if (row2.text() == row1.text()) {
+           addDown(i, 1, j);
+          i++;
+        } else {
+          if (row3.text().trim() != "" && i<2) {
+            if (row2.text()== row1.text()){addDown(i, 2, j);
+            i++;}
+          } else {
+            if (row4.text().trim() == row1.text().trim()) {
+              t = row4.text() + row1.text();
+              row1.text("");
+              row4.text(t);
+            }
+            else {
+              row4.text(row1.text());
+            }//
+          }
+        }
+              }
        i++;
     }
   }

@@ -40,43 +40,68 @@ function addValueByKeys() {
 // }
 
 function keydown() {
-  for (var j = 0; j < 1; j++) {
-    for (var i = 3; i >= 0; i--) {
-      let row0 = $("#cell" + 3 + "-" + j + "").text();
-      let row1 = $("#cell" + 2 + "-" + j + "").text();
-      let row2 = $("#cell" + 1 + "-" + j + "").text();
-      let row3 = $("#cell" + 0 + "-" + j + "").text();
-      console.log("0 is " + row0);
-      console.log("1 is " + row1);
-      console.log("2 is " + row2);
-      console.log("3 is " + row3);
-
-      if (!$.trim(row0)) {
-        if (!$.trim(row1)) {
-          if (!$.trim(row2)) {
-            if ($.trim(row3)) {
-              $("#cell" + i + "-" + j + "").text(row3);
-              $("#cell" + i - 3 + "-" + j + "").text("");
-            }
-          } else {
-            $("#cell" + i + "-" + j + "").text(row2);
-            $("#cell" + i - 2 + "-" + j + "").text("");
-          }
-        } else {
-          $("#cell" + i + "-" + j + "").text(row1);
-          $("#cell" + i - 1 + "-" + j + "").text("");
-        }
-      }
+  // the rows number defined from the bottom row0 is the lat row
+  for (var j = 0; j < 4; j++) {
+    let row0 = $("#cell" + 3 + "-" + j).text();
+    let row0color = $("#cell" + 3 + "-" + j).css("background-color");
+    let row1 = $("#cell" + 2 + "-" + j).text();
+    let row1color = $("#cell" + 2 + "-" + j).css("background-color");
+    let row2 = $("#cell" + 1 + "-" + j).text();
+    let row2color = $("#cell" + 1 + "-" + j).css("background-color");
+    let row3 = $("#cell" + 0 + "-" + j).text();
+    let row3color = $("#cell" + 0 + "-" + j).css("background-color");
+    //if the last rows cell is not empty
+    if ($.trim(row0)) {
+      row1 == row0 ? addDown(3, 2, j) : "";
+      row2 == row0 && !$.trim(row1) ? addDown(3, 1, j) : "";
+      row3 == row0 && !$.trim(row1) && !$.trim(row2) ? addDown(3, 0, j) : "";
+    } else {
+      //if the last rows cell is empty
+      if (!$.trim(row1)) {
+        if (!$.trim(row2)) $.trim(row3) ? replace(3, 0, j) : "";
+        else replace(3, 1, j);
+      } else replace(3, 2, j);
     }
   }
 }
 
-function keydown2() {
-  for (var j = 0; j < 1; j++) {
-    let row0 = $("#cell" + 3 + "-" + j + "").text();
-    let row1 = $("#cell" + 2 + "-" + j + "").text();
-    let row2 = $("#cell" + 1 + "-" + j + "").text();
-    let row3 = $("#cell" + 0 + "-" + j + "").text();
+//     if (!$.trim(row1)) {
+//       if (!$.trim(row2)) {
+//         if ($.trim(row3)) {
+//           if (row0 == row3) {
+//             $("#cell" + 3 + "-" + j).text(2 * row3);
 
-  }
-}
+//             $("#cell" + 0 + "-" + j)
+//               .text("")
+//               .css("background-color", "#CDC1B4");
+//           }
+//         }
+//       } else {
+//         if (row0 == row2) {
+//           $("#cell" + 3 + "-" + j).text(2 * row2);
+
+//           $("#cell" + 1 + "-" + j)
+//             .text("")
+//             .css("background-color", "#CDC1B4");
+//         }
+//       }
+//     } else {
+//       if (!$.trim(row0)) {
+//         $("#cell" + 3 + "-" + j)
+//           .text(row1)
+//           .css("background-color", row1color);
+//         $("#cell" + 2 + "-" + j)
+//           .text("")
+//           .css("background-color", "#CDC1B4");
+//       } else {
+//         if (row0 == row1) {
+//           $("#cell" + 3 + "-" + j).text(2 * row1);
+
+//           $("#cell" + 2 + "-" + j)
+//             .text("")
+//             .css("background-color", "#CDC1B4");
+//         }
+//       }
+//     }
+//   }
+// }

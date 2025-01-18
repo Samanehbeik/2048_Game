@@ -35,11 +35,16 @@ function keydown() {
     let row1 = $("#cell" + 2 + "-" + j).text();
     let row2 = $("#cell" + 1 + "-" + j).text();
     let row3 = $("#cell" + 0 + "-" + j).text();
+    let rl0=0;
+    let rl1=0;
+    let rl2=0;
+    let rl3=0;
     //if the last rows cell is not empty
     if ($.trim(row0)) {
-      row1 == row0 ? addDown(3, 2, j) : "";
-      row2 == row0 && !$.trim(row1) ? addDown(3, 1, j) : "";
-      row3 == row0 && !$.trim(row1) && !$.trim(row2) ? addDown(3, 0, j) : "";
+      row1 == row0 ? addDown(3, 2, j) : ""
+      rl0=1; 
+      row2 == row0 && !$.trim(row1) && rl0==0? addDown(3, 1, j) : "";
+      row3 == row0 && !$.trim(row1) && !$.trim(row2) &&rl0==0 ? addDown(3, 0, j) : "";
     } //if the last rows cell is empty
     else {
       if (!$.trim(row1)) {
@@ -86,12 +91,17 @@ function keyup() {
     let row2 = $("#cell" + 2 + "-" + j).text();
     let row1 = $("#cell" + 1 + "-" + j).text();
     let row0 = $("#cell" + 0 + "-" + j).text();
+    let rl0=0;
+    let rl1=0;
+    let rl2=0;
+    let rl3=0;
 
     //if the last rows cell is not empty
     if ($.trim(row0)) {
       row1 == row0 ? addDown(0, 1, j) : "";
-      row2 == row0 && !$.trim(row1) ? addDown(0, 2, j) : "";
-      row3 == row0 && !$.trim(row1) && !$.trim(row2) ? addDown(0, 3, j) : "";
+      rl0=1;
+      row2 == row0 && !$.trim(row1) && rl0==0 ? addDown(0, 2, j) : "";
+      row3 == row0 && !$.trim(row1) && !$.trim(row2) && rl0==0 ? addDown(0, 3, j) : "";
     } //if the last rows cell is empty
     else {
       if (!$.trim(row1)) {
@@ -115,18 +125,21 @@ function keyup() {
         if ($.trim(row3)) {
           replace(1, 3, j);
         }
-      } else {
-        replace(1, 2, j);
-      }
+      } 
+      // else {
+      //   replace(1, 2, j);
+      // }
     }
     //if the 2nd rows cell is not empty
     if ($.trim(row2)) {
       row3 == row2 ? addDown(2, 3, j) : "";
+      if(!$.trim(row1)) {replace(1,2,j)}
     }
     //if the 2nd rows cell is empty
     else {
       if ($.trim(row3)) {
-        replace(2, 3, j);
+        if ($.trim(row1)) {replace(2, 3, j)};
+        if (!$.trim(row1)) {replace(1,3,j)}
       }
     }
   } // end of for loop
@@ -138,12 +151,17 @@ function keyLeft() {
     let col2 = $("#cell" + j + "-" + 2).text();
     let col1 = $("#cell" + j + "-" + 1).text();
     let col0 = $("#cell" + j + "-" + 0).text();
+    let cl0=0;
+    let cl1=0;
+    let cl2=0;
+    let cl3=0;
 
     //if the first column cell is not empty
     if ($.trim(col0)) {
       col1 == col0 ? addL(0, 1, j) : "";
-      col2 == col0 && !$.trim(col1) ? addL(0, 2, j) : "";
-      col3 == col0 && !$.trim(col1) && !$.trim(col2) ? addL(0, 3, j) : "";
+      cl0=1;
+      col2 == col0 && !$.trim(col1) && cl0==0? addL(0, 2, j) : "";
+      col3 == col0 && !$.trim(col1) && !$.trim(col2) && cl0==0 ? addL(0, 3, j) : "";
     } //if the first column cell is empty
     else {
       if (!$.trim(col1)) {
@@ -191,11 +209,16 @@ function keyRight() {
     let col1 = $("#cell" + j + "-" + 2).text();
     let col2 = $("#cell" + j + "-" + 1).text();
     let col3 = $("#cell" + j + "-" + 0).text();
+    let cl0=0;
+    let cl1=0;
+    let cl2=0;
+    let cl3=0;
     //if the last rows cell is not empty
     if ($.trim(col0)) {
       col1 == col0 ? addL(3, 2, j) : "";
-      col2 == col0 && !$.trim(col1) ? addL(3, 1, j) : "";
-      col3 == col0 && !$.trim(col1) && !$.trim(col2) ? addL(3, 0, j) : "";
+      col0=1;
+      col2 == col0 && !$.trim(col1) && col0==0? addL(3, 1, j) : "";
+      col3 == col0 && !$.trim(col1) && !$.trim(col2) && col0==0? addL(3, 0, j) : "";
     } //if the last rows cell is empty
     else {
       if (!$.trim(col1)) {

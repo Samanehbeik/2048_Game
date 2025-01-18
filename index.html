@@ -39,12 +39,15 @@
         $(document).keydown(function (e) {
           switch (e.which) {
             case 37: // left arrow key
+              keyLeft();
               addValueByKeys();
               break;
             case 38: // up arrow key
+              keyup();
               addValueByKeys();
               break;
             case 39: // right arrow key
+              keyRight();
               addValueByKeys();
               break;
             case 40: // down arrow key

@@ -28,80 +28,210 @@ function addValueByKeys() {
     alert("You Lose the Game!");
   }
 }
-
-// function addDown(index, k, j) {
-//   let row1 = $("#myTable tr:nth-child(" + index + ") td:nth-child(" + j + ")");
-//   let row2 = $(
-//     "#myTable tr:nth-child(" + index + k + ") td:nth-child(" + j + ")"
-//   );
-//   let t = row2.text() + row1.text();
-//   row1.empty();
-//   row2.text("newValue");
-// }
-
 function keydown() {
   // the rows number defined from the bottom row0 is the lat row
   for (var j = 0; j < 4; j++) {
     let row0 = $("#cell" + 3 + "-" + j).text();
-    let row0color = $("#cell" + 3 + "-" + j).css("background-color");
     let row1 = $("#cell" + 2 + "-" + j).text();
-    let row1color = $("#cell" + 2 + "-" + j).css("background-color");
     let row2 = $("#cell" + 1 + "-" + j).text();
-    let row2color = $("#cell" + 1 + "-" + j).css("background-color");
     let row3 = $("#cell" + 0 + "-" + j).text();
-    let row3color = $("#cell" + 0 + "-" + j).css("background-color");
     //if the last rows cell is not empty
     if ($.trim(row0)) {
       row1 == row0 ? addDown(3, 2, j) : "";
       row2 == row0 && !$.trim(row1) ? addDown(3, 1, j) : "";
       row3 == row0 && !$.trim(row1) && !$.trim(row2) ? addDown(3, 0, j) : "";
-    } else {
-      //if the last rows cell is empty
+    } //if the last rows cell is empty
+    else {
       if (!$.trim(row1)) {
-        if (!$.trim(row2)) $.trim(row3) ? replace(3, 0, j) : "";
-        else replace(3, 1, j);
-      } else replace(3, 2, j);
+        if (!$.trim(row2) && $.trim(row3)) {
+          replace(3, 0, j);
+        } else {
+          replace(3, 1, j);
+        }
+      } else {
+        replace(3, 2, j);
+      }
     }
-  }
-}
+    //if the 3rd rows cell is not empty
+    if ($.trim(row1)) {
+      row2 == row1 ? addDown(2, 1, j) : "";
+      row3 == row1 && !$.trim(row2) ? addDown(2, 0, j) : "";
+    }
+    //if the 3rd rows cell is empty
+    else {
+      if (!$.trim(row2)) {
+        if ($.trim(row3)) {
+          replace(2, 0, j);
+        }
+      } else {
+        replace(2, 1, j);
+      }
+    }
+    //if the 2nd rows cell is not empty
+    if ($.trim(row2)) {
+      row3 == row2 ? addDown(1, 0, j) : "";
+    }
+    //if the 2nd rows cell is empty
+    else {
+      if ($.trim(row3)) {
+        replace(1, 0, j);
+      }
+    }
+  } // end of for loop
+} //end of function
+function keyup() {
+  // the rows number defined from the bottom row0 is the lat row
+  for (var j = 0; j < 4; j++) {
+    let row3 = $("#cell" + 3 + "-" + j).text();
+    let row2 = $("#cell" + 2 + "-" + j).text();
+    let row1 = $("#cell" + 1 + "-" + j).text();
+    let row0 = $("#cell" + 0 + "-" + j).text();
 
-//     if (!$.trim(row1)) {
-//       if (!$.trim(row2)) {
-//         if ($.trim(row3)) {
-//           if (row0 == row3) {
-//             $("#cell" + 3 + "-" + j).text(2 * row3);
+    //if the last rows cell is not empty
+    if ($.trim(row0)) {
+      row1 == row0 ? addDown(0, 1, j) : "";
+      row2 == row0 && !$.trim(row1) ? addDown(0, 2, j) : "";
+      row3 == row0 && !$.trim(row1) && !$.trim(row2) ? addDown(0, 3, j) : "";
+    } //if the last rows cell is empty
+    else {
+      if (!$.trim(row1)) {
+        if (!$.trim(row2) && $.trim(row3)) {
+          replace(0, 3, j);
+        } else {
+          replace(0, 2, j);
+        }
+      } else {
+        replace(0, 1, j);
+      }
+    }
+    //if the 3rd rows cell is not empty
+    if ($.trim(row1)) {
+      row2 == row1 ? addDown(1, 2, j) : "";
+      row3 == row1 && !$.trim(row2) ? addDown(1, 3, j) : "";
+    }
+    //if the 3rd rows cell is empty
+    else {
+      if (!$.trim(row2)) {
+        if ($.trim(row3)) {
+          replace(1, 3, j);
+        }
+      } else {
+        replace(1, 2, j);
+      }
+    }
+    //if the 2nd rows cell is not empty
+    if ($.trim(row2)) {
+      row3 == row2 ? addDown(2, 3, j) : "";
+    }
+    //if the 2nd rows cell is empty
+    else {
+      if ($.trim(row3)) {
+        replace(2, 3, j);
+      }
+    }
+  } // end of for loop
+} //end of function
 
-//             $("#cell" + 0 + "-" + j)
-//               .text("")
-//               .css("background-color", "#CDC1B4");
-//           }
-//         }
-//       } else {
-//         if (row0 == row2) {
-//           $("#cell" + 3 + "-" + j).text(2 * row2);
+function keyLeft() {
+  for (var j = 0; j < 4; j++) {
+    let col3 = $("#cell" + j + "-" + 3).text();
+    let col2 = $("#cell" + j + "-" + 2).text();
+    let col1 = $("#cell" + j + "-" + 1).text();
+    let col0 = $("#cell" + j + "-" + 0).text();
 
-//           $("#cell" + 1 + "-" + j)
-//             .text("")
-//             .css("background-color", "#CDC1B4");
-//         }
-//       }
-//     } else {
-//       if (!$.trim(row0)) {
-//         $("#cell" + 3 + "-" + j)
-//           .text(row1)
-//           .css("background-color", row1color);
-//         $("#cell" + 2 + "-" + j)
-//           .text("")
-//           .css("background-color", "#CDC1B4");
-//       } else {
-//         if (row0 == row1) {
-//           $("#cell" + 3 + "-" + j).text(2 * row1);
+    //if the first column cell is not empty
+    if ($.trim(col0)) {
+      col1 == col0 ? addL(0, 1, j) : "";
+      col2 == col0 && !$.trim(col1) ? addL(0, 2, j) : "";
+      col3 == col0 && !$.trim(col1) && !$.trim(col2) ? addL(0, 3, j) : "";
+    } //if the first column cell is empty
+    else {
+      if (!$.trim(col1)) {
+        if (!$.trim(col2) && $.trim(col3)) {
+          replaceL(0, 3, j);
+        } else {
+          replaceL(0, 2, j);
+        }
+      } else {
+        replaceL(0, 1, j);
+      }
+    }
+    //if the 3rd rows cell is not empty
+    if ($.trim(col1)) {
+      col2 == col1 ? addL(1, 2, j) : "";
+      col3 == col1 && !$.trim(col2) ? addL(1, 3, j) : "";
+    }
+    //if the 3rd rows cell is empty
+    else {
+      if (!$.trim(col2)) {
+        if ($.trim(col3)) {
+          replaceL(1, 3, j);
+        }
+      } else {
+        replaceL(1, 2, j);
+      }
+    }
+    //if the 2nd rows cell is not empty
+    if ($.trim(col2)) {
+      col3 == col2 ? addL(2, 3, j) : "";
+    }
+    //if the 2nd rows cell is empty
+    else {
+      if ($.trim(col3)) {
+        replaceL(2, 3, j);
+      }
+    }
+  } // end of for loop
+} //end of function
+function keyRight() {
 
-//           $("#cell" + 2 + "-" + j)
-//             .text("")
-//             .css("background-color", "#CDC1B4");
-//         }
-//       }
-//     }
-//   }
-// }
+ // the rows number defined from the bottom row0 is the lat row
+  for (var j = 0; j < 4; j++) {
+    let col0 = $("#cell" + j + "-" + 3).text();
+    let col1 = $("#cell" + j + "-" + 2).text();
+    let col2 = $("#cell" + j + "-" + 1).text();
+    let col3 = $("#cell" + j + "-" + 0).text();
+    //if the last rows cell is not empty
+    if ($.trim(col0)) {
+      col1 == col0 ? addL(3, 2, j) : "";
+      col2 == col0 && !$.trim(col1) ? addL(3, 1, j) : "";
+      col3 == col0 && !$.trim(col1) && !$.trim(col2) ? addL(3, 0, j) : "";
+    } //if the last rows cell is empty
+    else {
+      if (!$.trim(col1)) {
+        if (!$.trim(col2) && $.trim(col3)) {
+          replaceL(3, 0, j);
+        } else {
+          replaceL(3, 1, j);
+        }
+      } else {
+        replaceL(3, 2, j);
+      }
+    }
+    //if the 3rd rows cell is not empty
+    if ($.trim(col1)) {
+      col2 == col1 ? addL(2, 1, j) : "";
+      col3 == col1 && !$.trim(col2) ? addL(2, 0, j) : "";
+    }
+    //if the 3rd rows cell is empty
+    else {
+      if (!$.trim(col2)) {
+        if ($.trim(col3)) {
+          replaceL(2, 0, j);
+        }
+      } else {
+        replaceL(2, 1, j);
+      }
+    }
+    //if the 2nd rows cell is not empty
+    if ($.trim(col2)) {
+      col3 == col2 ? addL(1, 0, j) : "";
+    }
+    //if the 2nd rows cell is empty
+    else {
+      if ($.trim(col3)) {
+        replaceL(1, 0, j);
+      }
+    }
+  } // end of for loop
+} //end of function

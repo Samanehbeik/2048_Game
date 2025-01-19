@@ -15,6 +15,15 @@ function ColorId(value) {
   return colorMap[value] || "Invalid input";
 }
 
+function cellValue(index) {
+  const arr = [];
+  for (j = 0; j < 4; j++) {
+        arr[j] = $("#cell" + j + "-" + index).text();
+      
+  }
+  return arr;
+}
+
 function addDown(i, k, j) {
   let row = $("#cell" + i + "-" + j).text();
   $("#cell" + k + "-" + j)
@@ -24,6 +33,7 @@ function addDown(i, k, j) {
   return $("#cell" + i + "-" + j)
     .text(2 * row)
     .css("background-color", Color);
+
 }
 
 function replace(i, k, j) {

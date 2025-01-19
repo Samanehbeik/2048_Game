@@ -33,27 +33,26 @@ function keydown() {
   for (var j = 0; j < 4; j++) {
     let aLock = [0, 0, 0, 0];
     let arr = cellValue(j);
-    if ($.trim(arr[3])) {  
+    if ($.trim(arr[3])) {
       arr[3] == arr[2] ? addDown(3, 2, j) : "";
       aLock[3] = 1;
       arr[3] == arr[1] && !$.trim(arr[2]) && aLock[3] == 0
         ? addDown(3, 1, j)
-        : ""; aLock[3] = 1;
-      arr[3] == arr[0] &&
-      !$.trim(arr[2]) &&
-      !$.trim(arr[1]) &&
-      aLock[3] == 0
+        : "";
+      aLock[3] = 1;
+      arr[3] == arr[0] && !$.trim(arr[2]) && !$.trim(arr[1]) && aLock[3] == 0
         ? addDown(3, 0, j)
-        : "";aLock[3] = 1;
-    } 
-    else {
+        : "";
+      aLock[3] = 1;
+    } else {
       if (!$.trim(arr[2])) {
         if (!$.trim(arr[1]) && $.trim(arr[0])) {
           replace(3, 0, j);
           aLock[3] = 1;
         } else {
           replace(3, 1, j);
-          aLock[3] =1;
+          aLock[3] = 1;
+          if (arr[3]==arr[0]){addDown(3, 0, j)}else{replace(2,0,j)}
         }
       } else {
         replace(3, 2, j);
@@ -63,7 +62,7 @@ function keydown() {
     if ($.trim(arr[2])) {
       arr[2] == arr[1] ? addDown(2, 1, j) : "";
       aLock[2] = 1;
-      arr[2] == arr[0] && !$.trim(arr[2]) ? addDown(2, 0, j) : "";
+      arr[2] == arr[0] && !$.trim(arr[1]) ? addDown(2, 0, j) : "";
       aLock[2] = 1;
     } else {
       if (aLock[3] == 1) {
@@ -74,18 +73,23 @@ function keydown() {
             replace(1, 0, j);
           }
         }
-        replace(1, 2, j);
-        arr[2] = 1;
+        replace(2, 1, j);
+        aLock[2] = 1;
       } else {
         if (!$.trim(arr[1]) && $.trim(arr[0])) {
-          replace(2, 0, j);
-          aLock[2] = 1;
-        } else {
-          replace(2, 1, j);
+          if ($.trim(arr[3])) {
+            arr[0] == arr[3] ? addDown(3, 0, j) : replace(2, 0, j);
+          } else replace(3, 0, j);
+        } else if ($.trim(arr[1])) {
+          arr[1] == arr[0] ? addDown(1, 0, j) : "";
+          if ($.trim(arr[3])) {
+            arr[1] == arr[3] ? addDown(3, 1, j) : replace(2, 1, j);
+          } else replace(3, 1, j);
         }
       }
     }
-  } // end of for loop
+  }
+  // end of for loop
 } //end of function
 function keyup() {
   // the rows number defined from the bottom row0 is the lat row

@@ -34,29 +34,62 @@ function AddReplace(i, j) {
   if (i.text() == j.text()) {
     i.text(2 * i.text()).css("background-color", Color);
     j.text("").css("background-color", "#CDC1B4");
-    i.setAttribute("LockValue", true);
+    i.attr("LockValue", "true");
   }
-  if (i.text() == "") {
+  if (!$.trim(i.text())) {
     i.text(j.text()).css("background-color", ColorR);
     j.text("").css("background-color", "#CDC1B4");
   }
 }
 function move(Arr) {
-  if ($.trim(Arr[0])) {
-    let i = 1;
-    while (!$.trim(Arr[i]) && i < 4) {
-      i++;
+  if ($.trim(Arr[1].text())) {
+    AddReplace(Arr[0], Arr[1]);
+  }
+  if ($.trim(Arr[2].text())) {
+    if (Arr[0].attr("LockValue") == false && !$.trim(Arr[1].text())) {
+      Arr[0] == Arr[2]
+        ? AddReplace(Arr[0], Arr[2])
+        : AddReplace(Arr[1], Arr[2]);
+    } else {
+      AddReplace(Arr[1], Arr[2]);
     }
-    AddReplace(Arr[0], Arr[i]);
+  }
+  if ($.trim(Arr[3].text())) {
+    if (!$.trim(Arr[2].text())) {
+      if (!$.trim(Arr[1].text())) {
+        if (Arr[0].attr("LockValue") == false) {
+          if (Arr[0] == Arr[3] || !$.trim(Arr[0].text())) {
+            AddReplace(Arr[0], Arr[3]);
+          } else {
+            AddReplace(Arr[1], Arr[3]);
+          }
+        }
+      } else {
+        if (Arr[1].attr("LockValue") == false) {
+          Arr[1] == Arr[3]
+            ? AddReplace(Arr[1], Arr[3])
+            : AddReplace(Arr[2], Arr[3]);
+        }
+      }
+    } else {
+      AddReplace(Arr[2], Arr[3]);
+      if (!$.trim(Arr[0].text()) && !$.trim(Arr[1].text())) {
+        AddReplace(Arr[0], Arr[2]);
+      }
+      if ($.trim(Arr[0].text()) && !$.trim(Arr[1].text())) {
+        AddReplace(Arr[1], Arr[2]);
+      }
+    }
   }
 }
+
 function keydown2() {
   for (j = 0; j < 4; j++) {
     let arr = [];
-    arr[0] = $("#cell" + 3 + "-" + j).text();
-    arr[1] = $("#cell" + 2 + "-" + j).text();
-    arr[2] = $("#cell" + 1 + "-" + j).text();
-    arr[3] = $("#cell" + 0 + "-" + j).text();
+    arr[0] = $("#cell" + 3 + "-" + j);
+    arr[1] = $("#cell" + 2 + "-" + j);
+    arr[2] = $("#cell" + 1 + "-" + j);
+    arr[3] = $("#cell" + 0 + "-" + j);
     move(arr);
   }
 }
@@ -64,31 +97,31 @@ function keydown2() {
 function keyUp2() {
   for (j = 0; j < 4; j++) {
     let arr = [];
-    arr[0] = $("#cell" + 0 + "-" + j).text();
-    arr[1] = $("#cell" + 1 + "-" + j).text();
-    arr[2] = $("#cell" + 2 + "-" + j).text();
-    arr[3] = $("#cell" + 3 + "-" + j).text();
+    arr[0] = $("#cell" + 0 + "-" + j);
+    arr[1] = $("#cell" + 1 + "-" + j);
+    arr[2] = $("#cell" + 2 + "-" + j);
+    arr[3] = $("#cell" + 3 + "-" + j);
     move(arr);
   }
 }
 
-function keyLeft2() {
-  for (j = 0; j < 4; j++) {
-    let arr = [];
-    arr[0] = $("#cell" + j + "-" + 3).text();
-    arr[1] = $("#cell" + j + "-" + 2).text();
-    arr[2] = $("#cell" + j + "-" + 1).text();
-    arr[3] = $("#cell" + j + "-" + 0).text();
-    move(arr);
-  }
-}
 function keyRight2() {
   for (j = 0; j < 4; j++) {
     let arr = [];
-    arr[0] = $("#cell" + j + "-" + 0).text();
-    arr[1] = $("#cell" + j + "-" + 1).text();
-    arr[2] = $("#cell" + j + "-" + 2).text();
-    arr[3] = $("#cell" + j + "-" + 3).text();
+    arr[0] = $("#cell" + j + "-" + 3);
+    arr[1] = $("#cell" + j + "-" + 2);
+    arr[2] = $("#cell" + j + "-" + 1);
+    arr[3] = $("#cell" + j + "-" + 0);
+    move(arr);
+  }
+}
+function keyLeft2() {
+  for (j = 0; j < 4; j++) {
+    let arr = [];
+    arr[0] = $("#cell" + j + "-" + 0);
+    arr[1] = $("#cell" + j + "-" + 1);
+    arr[2] = $("#cell" + j + "-" + 2);
+    arr[3] = $("#cell" + j + "-" + 3);
     move(arr);
   }
 }

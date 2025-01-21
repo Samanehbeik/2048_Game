@@ -11,9 +11,10 @@
     <script src="test.js"></script>
   </head>
   <body>
-   
-    <div id="container">  <div id="safeTimerDisplay"  class="timer">00:00</div></div>
-  
+    <div id="container">
+      <div id="safeTimerDisplay" class="timer">00:00</div>
+    </div>
+
     <script>
       $(document).ready(function () {
         var $table = $("<table></table>").attr({
@@ -40,10 +41,11 @@
         $("#container").append($table);
         $("#NewGame").click(function () {
           StartNewGame();
-         timer();
+          timer();
         });
-        
+
         $(document).keydown(function (e) {
+          
           switch (e.which) {
             case 37: // left arrow key
               keyLeft2();
@@ -68,6 +70,5 @@
       });
     </script>
     <button id="NewGame">New Game</button>
-   
   </body>
 </html>

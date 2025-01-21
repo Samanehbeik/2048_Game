@@ -84,6 +84,7 @@ function move(row1, row2) {
   }
 }
 function Play(arr) {
+  $("#myTable td").attr("LockValue", "false");
   move(arr[0], arr[1]);
   move(arr[1], arr[2]);
   move(arr[0], arr[1]);
@@ -99,10 +100,7 @@ function keydown2() {
     arr[2] = $("#cell" + 1 + "-" + j);
     arr[3] = $("#cell" + 0 + "-" + j);
     Play(arr);
-    arr[0].attr("LockValue", "false");
-    arr[1].attr("LockValue", "false");
-    arr[2].attr("LockValue", "false");
-    arr[3].attr("LockValue", "false");
+    
   }
 }
 
@@ -114,10 +112,7 @@ function keyUp2() {
     arr[2] = $("#cell" + 2 + "-" + j);
     arr[3] = $("#cell" + 3 + "-" + j);
     Play(arr);
-    arr[0].attr("LockValue", "false");
-    arr[1].attr("LockValue", "false");
-    arr[2].attr("LockValue", "false");
-    arr[3].attr("LockValue", "false");
+    
   }
 }
 
@@ -129,10 +124,7 @@ function keyRight2() {
     arr[2] = $("#cell" + j + "-" + 1);
     arr[3] = $("#cell" + j + "-" + 0);
     Play(arr);
-    arr[0].attr("LockValue", "false");
-    arr[1].attr("LockValue", "false");
-    arr[2].attr("LockValue", "false");
-    arr[3].attr("LockValue", "false");
+   
   }
 }
 function keyLeft2() {
@@ -143,9 +135,6 @@ function keyLeft2() {
     arr[2] = $("#cell" + j + "-" + 2);
     arr[3] = $("#cell" + j + "-" + 3);
     Play(arr);
-    arr[0].attr("LockValue", "false");
-    arr[1].attr("LockValue", "false");
-    arr[2].attr("LockValue", "false");
-    arr[3].attr("LockValue", "false");
+  
   }
 }

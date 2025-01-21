@@ -45,3 +45,20 @@ button {
   font-weight: bold;
   border-radius: 5px;
 }
+
+.timer{
+  position: absolute;
+  padding: 10px 20px;
+  font-size: 20px;
+   margin-left: 380px;
+  margin-right: auto; 
+  margin-top: 0px;
+  background-color: #8f7a66;
+  color: #FF6F00;
+  font-weight: bold;
+  border-radius: 5px;
+  /* justify-content: center;
+  align-content: center; */
+  width: 95px;
+  
+}

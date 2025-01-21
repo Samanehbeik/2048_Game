@@ -11,13 +11,14 @@
     <script src="test.js"></script>
   </head>
   <body>
-    <div id="container"></div>
+   
+    <div id="container">  <div id="safeTimerDisplay"  class="timer">00:00</div></div>
+  
     <script>
       $(document).ready(function () {
         var $table = $("<table></table>").attr({
           id: "myTable",
           class: "table_container",
-
         });
         // Create six rows
         for (var i = 0; i < 4; i++) {
@@ -29,7 +30,7 @@
               id: "cell" + i + "-" + j,
               LockValue: false,
             });
-            
+
             $row.append($col);
           }
           $table.append($row);
@@ -39,7 +40,9 @@
         $("#container").append($table);
         $("#NewGame").click(function () {
           StartNewGame();
+         timer();
         });
+        
         $(document).keydown(function (e) {
           switch (e.which) {
             case 37: // left arrow key
@@ -65,5 +68,6 @@
       });
     </script>
     <button id="NewGame">New Game</button>
+   
   </body>
 </html>
